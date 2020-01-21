@@ -11,6 +11,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,11 +29,45 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        populateListView();
+        registerClickCallback();
+
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
                 Intent i = AddLens.makeLaunchIntent(MainActivity.this, "Hello world!");
                 startActivity(i);
             });
+    }
+
+
+
+    private void populateListView() {
+
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("yes");
+        arrayList.add("no");
+        arrayList.add("maybe");
+        arrayList.add("so");
+
+        ListView list = findViewById(R.id.lensList);
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,arrayList);
+        list.setAdapter(adapter);
+    }
+
+    private void registerClickCallback() {
+        ListView list = (ListView) findViewById(R.id.lensList);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+                TextView txt = (TextView) viewClicked;
+                String message = "You clicked # " + position
+                    + " which is string: " + txt.getText().toString();
+                Toast.makeText(MainActivity.this, message,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

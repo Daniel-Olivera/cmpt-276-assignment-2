@@ -6,6 +6,89 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AddLens"
+    tools:layout_editor_absoluteY="56dp"
     tools:showIn="@layout/activity_add_lens">
 
+    <EditText
+        android:id="@+id/lensMake"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="@string/ex_canon"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txtLensMake"
+        app:layout_constraintTop_toBottomOf="@+id/txtLensMake" />
+
+    <TextView
+        android:id="@+id/txtLensMake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/make"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/lensFocal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/ex_200_for_200mm"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/lensMake"
+        app:layout_constraintStart_toStartOf="@+id/txtLensFocal"
+        app:layout_constraintTop_toBottomOf="@+id/txtLensFocal" />
+
+    <TextView
+        android:id="@+id/txtLensAperture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/aperture"
+        app:layout_constraintStart_toStartOf="@+id/lensFocal"
+        app:layout_constraintTop_toBottomOf="@+id/lensFocal" />
+
+    <TextView
+        android:id="@+id/txtLensFocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/focal_length_mm"
+        app:layout_constraintStart_toStartOf="@+id/lensMake"
+        app:layout_constraintTop_toBottomOf="@+id/lensMake" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/save"
+        app:layout_constraintStart_toStartOf="@+id/lensAperture"
+        app:layout_constraintTop_toBottomOf="@+id/lensAperture" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSave"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/lensAperture"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/ex_2_8_for_f2_8"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/lensFocal"
+        app:layout_constraintStart_toStartOf="@+id/txtLensAperture"
+        app:layout_constraintTop_toBottomOf="@+id/txtLensAperture" />
 </androidx.constraintlayout.widget.ConstraintLayout>

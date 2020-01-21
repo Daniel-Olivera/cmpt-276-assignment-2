@@ -2,4 +2,11 @@
     <string name="app_name">Depth of Field Calculator</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_lens">AddLens</string>
+    <string name="ex_canon">ex: Canon</string>
+    <string name="make">Make:</string>
+    <string name="ex_200_for_200mm">ex: 200 for 200mm</string>
+    <string name="aperture">Aperture:</string>
+    <string name="focal_length_mm">Focal Length [mm]:</string>
+    <string name="ex_2_8_for_f2_8">ex: 2.8 for F2.8</string>
+    <string name="save">SAVE</string>
 </resources>
