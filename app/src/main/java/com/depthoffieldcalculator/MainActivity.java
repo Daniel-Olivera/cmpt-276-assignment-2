@@ -3,6 +3,7 @@ package com.depthoffieldcalculator;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.depthoffieldcalculator.Model.*;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,10 +18,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public LensManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         populateListView();
         registerClickCallback();
-    //to push
-
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-                Intent i = AddLens.makeLaunchIntent(MainActivity.this, "Hello world!");
+                Intent i = AddLens.makeLaunchIntent(MainActivity.this);
                 startActivity(i);
             });
     }
@@ -45,15 +46,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void populateListView() {
 
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("yes");
-        arrayList.add("no");
-        arrayList.add("maybe");
-        arrayList.add("so");
+        manager = LensManager.getInstance();
 
+        manager.add(new Lens("Canon",1.8,50));
+        manager.add(new Lens("Tamron",2.8,50));
+        manager.add(new Lens("Sigma",2.8,200));
+        manager.add(new Lens("Nikon",4,200));
+
+        ArrayList<String> lensArray = new ArrayList<>();
+
+      for (Lens lens: manager){
+          lensArray.add(toString(lens));
+      }
         ListView list = findViewById(R.id.lensList);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,arrayList);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,lensArray);
         list.setAdapter(adapter);
     }
 
@@ -91,4 +98,20 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public String toString(Lens lens){
+        String lensMake = lens.make;
+        String lensFocal = Integer.toString(lens.focalLength);
+        String lensAp = Double.toString(lens.maxAperture);
+
+        return lensMake + " " + lensFocal + " F" + lensAp;
+    }
+
+    private void updateUI(ListView list, ArrayList lensArray){
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,lensArray);
+        list.setAdapter(adapter);
+    }
+
+
+
 }
