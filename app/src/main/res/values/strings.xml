@@ -9,4 +9,5 @@
     <string name="focal_length_mm">Focal Length [mm]:</string>
     <string name="ex_2_8_for_f2_8">ex: 2.8 for F2.8</string>
     <string name="save">SAVE</string>
+    <string name="title_activity_calculator">Calculator</string>
 </resources>

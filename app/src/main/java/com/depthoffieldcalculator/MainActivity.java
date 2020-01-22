@@ -1,5 +1,6 @@
 package com.depthoffieldcalculator;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,12 +26,21 @@ public class MainActivity extends AppCompatActivity {
 
     public LensManager manager;
 
+
+
+    public static Intent makeLaunchIntent(Context c) {
+        Intent intent = new Intent(c, MainActivity.class);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         populateListView();
         registerClickCallback();
@@ -45,13 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void populateListView() {
-
         manager = LensManager.getInstance();
-
-        manager.add(new Lens("Canon",1.8,50));
-        manager.add(new Lens("Tamron",2.8,50));
-        manager.add(new Lens("Sigma",2.8,200));
-        manager.add(new Lens("Nikon",4,200));
+//        manager.add(new Lens("Canon",1.8,50));
+//        manager.add(new Lens("Tamron",2.8,50));
+//        manager.add(new Lens("Sigma",2.8,200));
+//        manager.add(new Lens("Nikon",4,200));
 
         ArrayList<String> lensArray = new ArrayList<>();
 
@@ -104,14 +112,8 @@ public class MainActivity extends AppCompatActivity {
         String lensFocal = Integer.toString(lens.focalLength);
         String lensAp = Double.toString(lens.maxAperture);
 
-        return lensMake + " " + lensFocal + " F" + lensAp;
+        return lensMake + " " + lensFocal + "mm F" + lensAp;
     }
-
-    private void updateUI(ListView list, ArrayList lensArray){
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,lensArray);
-        list.setAdapter(adapter);
-    }
-
 
 
 }
