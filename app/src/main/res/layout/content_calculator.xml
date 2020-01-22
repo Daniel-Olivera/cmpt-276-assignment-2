@@ -8,4 +8,192 @@
     tools:context=".Calculator"
     tools:showIn="@layout/activity_calculator">
 
+    <TextView
+        android:id="@+id/txtNearDist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/near_focal_distance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtFarDist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/far_focal_distance"
+        app:layout_constraintEnd_toEndOf="@+id/txtNearDist"
+        app:layout_constraintTop_toBottomOf="@+id/txtNearDist" />
+
+    <TextView
+        android:id="@+id/txtDoF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/depth_of_field"
+        app:layout_constraintEnd_toEndOf="@+id/txtFarDist"
+        app:layout_constraintTop_toBottomOf="@+id/txtFarDist" />
+
+    <TextView
+        android:id="@+id/txtHyper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/hyperfocal_distance"
+        app:layout_constraintEnd_toEndOf="@+id/txtDoF"
+        app:layout_constraintTop_toBottomOf="@+id/txtDoF" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintGuide_begin="135dp" />
+
+    <TextView
+        android:id="@+id/txtDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/photo_details_with"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <TextView
+        android:id="@+id/txtNearNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:text="@string/enter_all_values"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txtNearDist"
+        app:layout_constraintTop_toTopOf="@+id/txtNearDist" />
+
+    <TextView
+        android:id="@+id/txtFarNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:text="@string/enter_all_values"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txtFarDist"
+        app:layout_constraintTop_toTopOf="@+id/txtFarDist" />
+
+    <TextView
+        android:id="@+id/txtDoFNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:text="@string/enter_all_values"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txtDoF"
+        app:layout_constraintTop_toTopOf="@+id/txtDoF" />
+
+    <TextView
+        android:id="@+id/txtHyperNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:text="@string/enter_all_values"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txtHyper"
+        app:layout_constraintTop_toTopOf="@+id/txtHyper" />
+
+    <TextView
+        android:id="@+id/txtLensName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/textview"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtDetails"
+        app:layout_constraintStart_toEndOf="@+id/txtDetails" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/circle_of_confusion_m"
+        app:layout_constraintStart_toStartOf="@+id/txtDetails"
+        app:layout_constraintTop_toBottomOf="@+id/txtDetails" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/distance_to_subjest_m"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/selected_aperture"
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <EditText
+        android:id="@+id/editTextCoC"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:singleLine="false"
+        android:text="@string/_0_029"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/editTextDist"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:hint="@string/ex_1_5_for_1_5m"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCoC"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/editTextAper"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:hint="@string/ex_1_8_for_f1_8"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDist"
+        android:importantForAutofill="no" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
