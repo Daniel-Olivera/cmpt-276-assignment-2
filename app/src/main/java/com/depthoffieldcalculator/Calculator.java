@@ -19,7 +19,6 @@ public class Calculator extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //start work on this
     }
 
 }
