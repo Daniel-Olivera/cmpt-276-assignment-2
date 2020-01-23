@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -48,13 +50,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populateListView() {
+
         manager = LensManager.getInstance();//pulls instance
 
         ArrayList<String> lensArray = new ArrayList<>();//setup an array to store the lenses in for the listView
 
+        //Pre-populates the list with lenses
+        if(manager.lenses.size() == 0){
+            manager.add(new Lens("Canon",1.8,50));
+            manager.add(new Lens("Tamron",2.8,90));
+            manager.add(new Lens("Sigma",2.8,200));
+            manager.add(new Lens("Nikon",4.0,200));
+        }
+
       for (Lens lens: manager){
           lensArray.add(toString(lens));
       }
+
         ListView list = findViewById(R.id.lensList);
         //Adapter to show the lensArray in the list on screen
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,lensArray);

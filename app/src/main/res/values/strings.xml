@@ -18,10 +18,11 @@
     <string name="enter_all_values">Enter all values</string>
     <string name="textview">TextView</string>
     <string name="circle_of_confusion_m">Circle of Confusion [m]:</string>
-    <string name="distance_to_subjest_m">Distance to subjest [m]:</string>
+    <string name="distance_to_subject_m">Distance to subject [m]:</string>
     <string name="selected_aperture">Selected Aperture:</string>
     <string name="ex_1_5_for_1_5m">ex: 1.5 for 1.5m</string>
     <string name="ex_1_8_for_f1_8">ex: 1.8 for F1.8</string>
     <string name="_0_029">0.029</string>
     <string name="calculate">Calculate</string>
+    <string name="select_a_lens_to_use">Select a lens to use:</string>
 </resources>
