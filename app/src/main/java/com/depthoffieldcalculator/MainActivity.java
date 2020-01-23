@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //converts the lens data into string for onscreen display
-    public String toString(Lens lens){
+    public static String toString(Lens lens){
         String lensMake = lens.make;
         String lensFocal = Integer.toString(lens.focalLength);
         String lensAp = Double.toString(lens.maxAperture);

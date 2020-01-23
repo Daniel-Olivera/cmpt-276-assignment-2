@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.text.DecimalFormat;
 
 import static com.depthoffieldcalculator.MainActivity.pos;
@@ -44,7 +46,17 @@ public class Calculator extends AppCompatActivity {
         //pull singleton
         manager = LensManager.getInstance();
 
+        //setup Lens info text
+        TextView lensInfo = findViewById(R.id.txtLensName);
+        Lens lens = manager.get(pos);
+        String lensDetails = MainActivity.toString(lens);
+
+        //display the selected lens info
+        lensInfo.setText(lensDetails);
+
         setupCalculator();
+
+
     }
 
     //sets up the calculator button
@@ -100,10 +112,16 @@ public class Calculator extends AppCompatActivity {
 
     private void display(double near, double far, double dof, double hyper, float dist){
 
+
+
         String nearMsg = formatM(near);
         String farMsg = formatM(far);
         String DoF = formatM(dof);
         String hyperMsg = formatM(hyper);
+
+
+
+
 
         //if the distance to target is greater than the hyperfocal distance, then the fov is infinite
         if(dist > hyper){
@@ -111,6 +129,7 @@ public class Calculator extends AppCompatActivity {
             DoF = "\u221E" + "m";
         }
         //set up the calculator displays
+
         TextView nearFocal = findViewById(R.id.txtNearNum);
         TextView farFocal = findViewById(R.id.txtFarNum);
         TextView Depth = findViewById(R.id.txtDoFNum);
@@ -120,6 +139,7 @@ public class Calculator extends AppCompatActivity {
         farFocal.setText(farMsg);
         Depth.setText(DoF);
         hyperFocal.setText(hyperMsg);
+
     }
 
     //Formatting method taken from Assignment 1
