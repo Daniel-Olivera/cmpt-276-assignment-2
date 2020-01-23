@@ -53,10 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void populateListView() {
         manager = LensManager.getInstance();
-//        manager.add(new Lens("Canon",1.8,50));
-//        manager.add(new Lens("Tamron",2.8,50));
-//        manager.add(new Lens("Sigma",2.8,200));
-//        manager.add(new Lens("Nikon",4,200));
 
         ArrayList<String> lensArray = new ArrayList<>();
 
@@ -72,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void registerClickCallback() {
         ListView list = findViewById(R.id.lensList);
         list.setOnItemClickListener((parent, viewClicked, position, id) -> {
-            //pos = position;
+            pos = position;
             Intent i = Calculator.makeLaunchIntent(MainActivity.this);
             startActivity(i);
         });

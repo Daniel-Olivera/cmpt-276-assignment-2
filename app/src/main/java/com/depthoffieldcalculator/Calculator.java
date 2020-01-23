@@ -5,21 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.depthoffieldcalculator.Model.DoFCalculator;
+import com.depthoffieldcalculator.Model.Lens;
 import com.depthoffieldcalculator.Model.LensManager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+
+import static com.depthoffieldcalculator.MainActivity.pos;
 
 public class Calculator extends AppCompatActivity {
 
@@ -44,6 +44,7 @@ public class Calculator extends AppCompatActivity {
         //pull singleton
         manager = LensManager.getInstance();
 
+
         setupCalculator();
 
     }
@@ -52,6 +53,8 @@ public class Calculator extends AppCompatActivity {
 
     //sets up the calculator button
     private void setupCalculator() {
+
+        Lens lens = manager.get(pos);
 
         EditText editCoC = findViewById(R.id.editTextCoC);
         EditText editDist = findViewById(R.id.editTextDist);
@@ -70,7 +73,17 @@ public class Calculator extends AppCompatActivity {
                 coc = Float.valueOf(editCoC.getText().toString());
                 dist = Float.valueOf(editDist.getText().toString());
                 aperture = Float.valueOf(editAp.getText().toString());
+
+                if(dist <= 0){
+                    Toast.makeText(Calculator.this, "Distance must be greater than 0m", Toast.LENGTH_LONG).show();
+                }
+                else if(aperture < lens.maxAperture-0.01){
+                    String msg = "Please input an F value of at least " + lens.maxAperture;
+                    Toast.makeText(Calculator.this, msg, Toast.LENGTH_LONG).show();
+                }
+                else{
                 calculate(coc,dist,aperture);
+                }
             }
         });
     }
@@ -78,19 +91,19 @@ public class Calculator extends AppCompatActivity {
     private void calculate(float coc, float dist, float aperture) {
         DoFCalculator dof = new DoFCalculator(manager);
 
-        double focalNear = dof.getDofNear(MainActivity.pos, aperture, dist, coc)/1000;
-        double focalFar = dof.getDofFar(MainActivity.pos, aperture, dist, coc)/1000;
+        double focalNear = dof.getDofNear(pos, aperture, dist, coc)/1000;
+        double focalFar = dof.getDofFar(pos, aperture, dist, coc)/1000;
         double DoF = focalFar - focalNear;
-        double hyper = dof.getHyperDist(MainActivity.pos, aperture, coc)/1000;
+        double hyper = dof.getHyperDist(pos, aperture, coc)/1000;
 
         display(focalNear,focalFar,DoF,hyper);
     }
 
     private void display(double near, double far, double dof, double hyper){
-        String nearMsg = formatM(near) + "m";
-        String farMsg = formatM(far) + "m";
-        String DoF = formatM(dof) + "m";
-        String hyperMsg = formatM(hyper) + "m";
+        String nearMsg = formatM(near);
+        String farMsg = formatM(far);
+        String DoF = formatM(dof);
+        String hyperMsg = formatM(hyper);
 
         TextView nearFocal = findViewById(R.id.txtNearNum);
         TextView farFocal = findViewById(R.id.txtFarNum);
@@ -104,7 +117,7 @@ public class Calculator extends AppCompatActivity {
     }
 
     private String formatM(double distanceInM) {
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat df = new DecimalFormat("0.00m");
         return df.format(distanceInM);
     }
 }
