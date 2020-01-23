@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public LensManager manager;
-    public static int pos;
+    public static int pos; //used for tracking which item in the list is clicked
 
 
     public static Intent makeLaunchIntent(Context c) {
@@ -37,38 +37,36 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         populateListView();
         registerClickCallback();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab); //sends user to the AddLens screen
         fab.setOnClickListener(view -> {
                 Intent i = AddLens.makeLaunchIntent(MainActivity.this);
                 startActivity(i);
             });
     }
 
-
-
     private void populateListView() {
-        manager = LensManager.getInstance();
+        manager = LensManager.getInstance();//pulls instance
 
-        ArrayList<String> lensArray = new ArrayList<>();
+        ArrayList<String> lensArray = new ArrayList<>();//setup an array to store the lenses in for the listView
 
       for (Lens lens: manager){
           lensArray.add(toString(lens));
       }
         ListView list = findViewById(R.id.lensList);
-
+        //Adapter to show the lensArray in the list on screen
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,lensArray);
         list.setAdapter(adapter);
     }
 
+    //depending on which lens is selected from the list,
+    // this sends the user to the calculator screen
     private void registerClickCallback() {
         ListView list = findViewById(R.id.lensList);
         list.setOnItemClickListener((parent, viewClicked, position, id) -> {
-            pos = position;
+            pos = position; //sends the position in the list for indexing in the calculator
             Intent i = Calculator.makeLaunchIntent(MainActivity.this);
             startActivity(i);
         });
@@ -96,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //converts the lens data into string for onscreen display
     public String toString(Lens lens){
         String lensMake = lens.make;
         String lensFocal = Integer.toString(lens.focalLength);

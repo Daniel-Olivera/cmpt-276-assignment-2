@@ -53,7 +53,8 @@ public class AddLens extends AppCompatActivity {
                     TextUtils.isEmpty(lensFocal.getText().toString()) ||
                     TextUtils.isEmpty(lensAp.getText().toString()))
             {
-                Toast.makeText(AddLens.this, "Invalid input", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddLens.this, "Invalid input",
+                        Toast.LENGTH_LONG).show();
             }
             else{
                 //takes user input
@@ -63,11 +64,13 @@ public class AddLens extends AppCompatActivity {
 
                 //checks if the focal length is less than or equal to 0
                 if(focal <= 0){
-                    Toast.makeText(AddLens.this, "Focal length cannot be 0", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddLens.this, "Focal length cannot be 0",
+                            Toast.LENGTH_LONG).show();
                 }
                 //check if aperture is less than minimum of F1.4
                 else if(aperture < 1.4){
-                    Toast.makeText(AddLens.this, "F-value cannot be lower than 1.4", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddLens.this, "F-value cannot be lower than 1.4",
+                            Toast.LENGTH_LONG).show();
                 }
                 else{
                     //if all the input checks pass, input is actually saved

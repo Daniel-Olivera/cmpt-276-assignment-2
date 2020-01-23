@@ -11,7 +11,7 @@ public class LensManager implements Iterable<Lens> {
     private LensManager(){
         //Private to prevent anyone else from instantiating
     }
-
+    //Creates the singleton instance
     public static LensManager getInstance(){
         if(instance == null){
            instance = new LensManager();
