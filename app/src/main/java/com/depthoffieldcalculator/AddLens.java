@@ -17,9 +17,9 @@ import com.depthoffieldcalculator.Model.*;
 
 public class AddLens extends AppCompatActivity {
 
-    String make;
-    int focal;
-    double aperture;
+    private String make;
+    private int focal;
+    private double aperture;
 
     private LensManager manager;
 
@@ -62,7 +62,7 @@ public class AddLens extends AppCompatActivity {
                 aperture = Double.valueOf(lensAp.getText().toString());
 
                 //checks if the focal length or aperture are less than or equal to 0
-                if(make == null || focal <= 0 || aperture <= 0){
+                if(focal <= 0 || aperture <= 0){
                     Toast.makeText(AddLens.this, "Invalid input", Toast.LENGTH_LONG).show();
                 }
                 else{
@@ -85,7 +85,7 @@ public class AddLens extends AppCompatActivity {
         });
     }
 
-
+//adds the lens to the manager based on the data inputted by the user
     void addLens(String model, int focalLength, double ap){
         manager.add(new Lens(model, ap, focalLength));
     }

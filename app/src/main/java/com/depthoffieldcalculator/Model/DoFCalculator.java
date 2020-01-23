@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class DoFCalculator {
 
-    private static final double COC = 0.029;    // "Circle of Confusion" for a "Full Frame" camera
+    //private static final double COC = 0.029;    // "Circle of Confusion" for a "Full Frame" camera
     private LensManager calculate;
     private Scanner in = new Scanner(System.in);
 
@@ -13,25 +13,25 @@ public class DoFCalculator {
     }
 
     //calculates the hyperfocal distance
-    public double getHyperDist(int index, double fValue) {
+    public double getHyperDist(int index, double fValue, float coc) {
         Lens hyperLens = calculate.get(index);
         int focal = hyperLens.getFocalLength();
 
-        return ((focal * focal) / (fValue * COC));
+        return ((focal * focal) / (fValue * coc));
     }
     //gets the starting point of the depth of field
-    public double getDofNear(int index, double fValue, double distance) {
+    public double getDofNear(int index, double fValue, double distance, float coc) {
         Lens nearLens = calculate.get(index);
-        double hyper = getHyperDist(index, fValue);
+        double hyper = getHyperDist(index, fValue, coc);
         distance *= 1000;
 
         return (hyper * distance) / (hyper + (distance - (nearLens.getFocalLength())));
 
     }
     //gets the ending point of the depth of field
-    public double getDofFar(int index, double fValue, double distance) {
+    public double getDofFar(int index, double fValue, double distance, float coc) {
         Lens farLens = calculate.get(index);
-        double hyper = getHyperDist(index, fValue);
+        double hyper = getHyperDist(index, fValue, coc);
         distance *= 1000;
 
         return (hyper * distance) / (hyper - (distance - (farLens.getFocalLength())));

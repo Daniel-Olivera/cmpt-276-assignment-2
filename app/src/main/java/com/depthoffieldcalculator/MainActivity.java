@@ -10,22 +10,19 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     public LensManager manager;
-
+    public static int pos;
 
 
     public static Intent makeLaunchIntent(Context c) {
@@ -73,15 +70,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void registerClickCallback() {
-        ListView list = (ListView) findViewById(R.id.lensList);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-                TextView txt = (TextView) viewClicked;
-                String message = "You clicked # " + position
-                    + " which is string: " + txt.getText().toString();
-                Toast.makeText(MainActivity.this, message,Toast.LENGTH_SHORT).show();
-            }
+        ListView list = findViewById(R.id.lensList);
+        list.setOnItemClickListener((parent, viewClicked, position, id) -> {
+            //pos = position;
+            Intent i = Calculator.makeLaunchIntent(MainActivity.this);
+            startActivity(i);
         });
     }
 
