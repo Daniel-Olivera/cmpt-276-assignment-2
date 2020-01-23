@@ -45,10 +45,7 @@ public class Calculator extends AppCompatActivity {
         manager = LensManager.getInstance();
 
         setupCalculator();
-
     }
-
-
 
     //sets up the calculator button
     private void setupCalculator() {
@@ -59,7 +56,6 @@ public class Calculator extends AppCompatActivity {
         EditText editDist = findViewById(R.id.editTextDist);
         EditText editAp = findViewById(R.id.editTextAper);
         Button btnCalc = findViewById(R.id.btnCalc);
-
 
         //setup the button click listener
         btnCalc.setOnClickListener(view -> {
